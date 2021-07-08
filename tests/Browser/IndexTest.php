@@ -17,7 +17,7 @@ class IndexTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('Trios is a simple exercise to test your English skills.');
+                    ->assertSee('Trios are simple exercises to test your English skills.');
         });
     }
 

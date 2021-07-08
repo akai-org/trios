@@ -1,0 +1,22 @@
+language: php
+
+sudo: required
+
+addons:
+   chrome: stable
+
+php:
+  - 7.1
+
+install:
+  - cp .env.example .env
+  - composer self-update
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+
+before_script:
+  - php artisan key:generate
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8000 &
+  - php artisan serve &
+
+script:
+  - php artisan dusk
